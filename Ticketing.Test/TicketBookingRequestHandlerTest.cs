@@ -1,4 +1,5 @@
 ﻿using Xunit;
+using Shouldly;
 
 namespace Ticketing.Test
 {
@@ -29,6 +30,12 @@ namespace Ticketing.Test
             Assert.Equal(BookingRequest.Family, Result.Family);
             Assert.Equal(BookingRequest.Email, Result.Email);
 
+               //use shouldby 
+
+            Result.ShouldNotBeNull();
+            Result.Name.ShouldBe(BookingRequest.Name);
+            Result.Family.ShouldBe(BookingRequest.Family);
+            Result.Email.ShouldBe(BookingRequest.Email);
         }
     }
 }
