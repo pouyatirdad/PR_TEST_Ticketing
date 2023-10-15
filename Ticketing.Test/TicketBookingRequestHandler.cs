@@ -8,7 +8,12 @@
 
         internal ServiceBookingResult BookService(TicketBookingRequest bookingRequest)
         {
-            throw new NotImplementedException();
+            return new ServiceBookingResult
+            {
+                Name = bookingRequest.Name,
+                Family = bookingRequest.Family,
+                Email = bookingRequest.Email
+            };
         }
     }
 }
