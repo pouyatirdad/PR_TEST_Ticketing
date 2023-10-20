@@ -7,6 +7,13 @@ namespace Ticketing.Test
 {
     public class Ticket_Booking_Request_Handler_Test
     {
+        private readonly TicketBookingRequestHandler _handler;
+
+        public Ticket_Booking_Request_Handler_Test()
+        {
+            _handler = new TicketBookingRequestHandler();
+        }
+
         [Fact]
         public void Should_Return_Ticket_Booking_Response_With_Request_Values()
         {
@@ -19,11 +26,9 @@ namespace Ticketing.Test
                 Email= "Test Email",
             };
 
-            var Handler = new TicketBookingRequestHandler();
-
             //act - pass data to method
 
-            ServiceBookingResult Result =Handler.BookService(BookingRequest);
+            ServiceBookingResult Result =_handler.BookService(BookingRequest);
 
             //assert - pass tests
 
@@ -43,15 +48,7 @@ namespace Ticketing.Test
         [Fact]
         public void Should_Throw_Exception_For_Null_Request()
         {
-            //arrange
-
-            //act
-
-            var Handler = new TicketBookingRequestHandler();
-
-            //assert
-
-            var exception = Should.Throw<ArgumentNullException>(()=>Handler.BookService(null));
+            var exception = Should.Throw<ArgumentNullException>(()=> _handler.BookService(null));
             exception.ParamName.ShouldBe("bookingRequest");
 
         }
