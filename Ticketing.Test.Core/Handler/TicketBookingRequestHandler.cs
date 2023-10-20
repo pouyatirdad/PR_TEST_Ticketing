@@ -4,7 +4,7 @@ namespace Ticketing.Core.Handler
 {
     public class TicketBookingRequestHandler
     {
-        public TicketBookingRequestHandler()
+        public TicketBookingRequestHandler(DataService.ITicketBookingService @object)
         {
         }
 
