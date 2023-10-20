@@ -10,5 +10,7 @@ namespace Ticketing.Core.DataService
     public interface ITicketBookingService
     {
         void Save(TicketBooking ticketBooking);
+
+        IEnumerable<Ticket> GetAvailableTickets(DateTime date);
     }
 }

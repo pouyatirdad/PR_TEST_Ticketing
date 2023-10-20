@@ -13,6 +13,7 @@ namespace Ticketing.Test
         private readonly TicketBookingRequestHandler _handler;
         private readonly TicketBookingRequest _request;
         private readonly Mock<ITicketBookingService> _ticketBookingServiceMock;
+        private List<Ticket> _availableticketList;
 
         public Ticket_Booking_Request_Handler_Test()
         {
@@ -23,9 +24,14 @@ namespace Ticketing.Test
                 Name = "Test Name",
                 Family = "Test Family",
                 Email = "Test Email",
+                Date = DateTime.Now,
             };
 
+            _availableticketList = new List<Ticket>() { new Ticket()};
             _ticketBookingServiceMock = new Mock<ITicketBookingService>();
+            _ticketBookingServiceMock.Setup(x => x.GetAvailableTickets(_request.Date))
+                //use returns because has value
+                .Returns(_availableticketList);
 
             _handler = new TicketBookingRequestHandler(_ticketBookingServiceMock.Object);
         }
@@ -65,6 +71,7 @@ namespace Ticketing.Test
         {
             TicketBooking savedBooking = null;
             _ticketBookingServiceMock.Setup(x => x.Save(It.IsAny<TicketBooking>()))
+                //use Callback because has not value and is void
                 .Callback<TicketBooking>(result =>
                 {
                     savedBooking = result;
@@ -72,6 +79,7 @@ namespace Ticketing.Test
 
             _handler.BookService(_request);
 
+            //use times.once because we want call the method 1 time
             _ticketBookingServiceMock.Verify(x=>x.Save(It.IsAny<TicketBooking>()),Times.Once);
 
             //assert
@@ -80,6 +88,17 @@ namespace Ticketing.Test
             savedBooking.Name.ShouldBe(_request.Name);
             savedBooking.Family.ShouldBe(_request.Family);
             savedBooking.Email.ShouldBe(_request.Email);
+
+        }
+
+        [Fact]
+        public void Should_Not_Save_Ticket_Booking_Request_If_None_Available()
+        {
+            _availableticketList.Clear();
+            _handler.BookService(_request);
+
+            //use times.Never because we dont want call method
+            _ticketBookingServiceMock.Verify(x => x.Save(It.IsAny<TicketBooking>()), Times.Never);
 
         }
     }
