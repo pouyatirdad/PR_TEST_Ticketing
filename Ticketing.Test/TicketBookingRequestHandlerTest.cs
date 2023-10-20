@@ -39,5 +39,21 @@ namespace Ticketing.Test
             Result.Family.ShouldBe(BookingRequest.Family);
             Result.Email.ShouldBe(BookingRequest.Email);
         }
+
+        [Fact]
+        public void Should_Throw_Exception_For_Null_Request()
+        {
+            //arrange
+
+            //act
+
+            var Handler = new TicketBookingRequestHandler();
+
+            //assert
+
+            var exception = Should.Throw<ArgumentNullException>(()=>Handler.BookService(null));
+            exception.ParamName.ShouldBe("bookingRequest");
+
+        }
     }
 }
