@@ -20,18 +20,18 @@ namespace Ticketing.Core.Handler
                 throw new ArgumentNullException(nameof(bookingRequest));
             }
 
-            _ticketBookingService.Save(new TicketBooking()
-            {
-                Email = bookingRequest.Email,
-                Family = bookingRequest.Family,
-                Name = bookingRequest.Name,
-            });
+            _ticketBookingService.Save(CreateTicketBookingObject<TicketBooking>(bookingRequest));
 
-            return new ServiceBookingResult
+            return CreateTicketBookingObject<ServiceBookingResult>(bookingRequest);
+        }
+        public static T CreateTicketBookingObject<T>(TicketBookingRequest bookingRequest)
+        where T : ServiceBookingBase,new()
+        {
+            return new T
             {
-                Name = bookingRequest.Name,
+                Name= bookingRequest.Name,
                 Family = bookingRequest.Family,
-                Email = bookingRequest.Email
+                Email = bookingRequest.Email,
             };
         }
     }
