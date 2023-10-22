@@ -20,7 +20,13 @@ namespace Ticketing.Core.Handler
                 throw new ArgumentNullException(nameof(bookingRequest));
             }
 
-            _ticketBookingService.Save(CreateTicketBookingObject<TicketBooking>(bookingRequest));
+            var availableTickets = _ticketBookingService.GetAvailableTickets(bookingRequest.Date);
+
+            if (availableTickets.Any())
+            {
+                _ticketBookingService.Save(CreateTicketBookingObject<TicketBooking>(bookingRequest));
+            }
+
 
             return CreateTicketBookingObject<ServiceBookingResult>(bookingRequest);
         }
