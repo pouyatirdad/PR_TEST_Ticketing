@@ -27,7 +27,7 @@ namespace Ticketing.Test
                 Date = DateTime.Now,
             };
 
-            _availableticketList = new List<Ticket>() { new Ticket()};
+            _availableticketList = new List<Ticket>() { new Ticket() { Id = 1} };
             _ticketBookingServiceMock = new Mock<ITicketBookingService>();
             _ticketBookingServiceMock.Setup(x => x.GetAvailableTickets(_request.Date))
                 //use returns because has value
@@ -88,7 +88,7 @@ namespace Ticketing.Test
             savedBooking.Name.ShouldBe(_request.Name);
             savedBooking.Family.ShouldBe(_request.Family);
             savedBooking.Email.ShouldBe(_request.Email);
-
+            savedBooking.Id.ShouldBe(_availableticketList.First().Id);
         }
 
         [Fact]

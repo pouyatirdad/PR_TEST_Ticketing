@@ -9,5 +9,6 @@ namespace Ticketing.Core.Domain
 {
     public class TicketBooking : ServiceBookingBase
     {
+        public int Id { get; set; }
     }
 }
