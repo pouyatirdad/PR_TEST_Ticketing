@@ -21,6 +21,7 @@ namespace Ticketing.Core.Handler
             }
 
             var availableTickets = _ticketBookingService.GetAvailableTickets(bookingRequest.Date);
+            var result = CreateTicketBookingObject<ServiceBookingResult>(bookingRequest);
 
             if (availableTickets.Any())
             {
@@ -28,10 +29,13 @@ namespace Ticketing.Core.Handler
                 var TicketBooking = CreateTicketBookingObject<TicketBooking>(bookingRequest);
                 TicketBooking.Id = Ticket.Id;
                 _ticketBookingService.Save(TicketBooking);
+                result.Flag = Enums.BookingResultFlag.Success;
+            }
+            else { 
+            result.Flag = Enums.BookingResultFlag.Failure;
             }
 
-
-            return CreateTicketBookingObject<ServiceBookingResult>(bookingRequest);
+            return result;
         }
         public static T CreateTicketBookingObject<T>(TicketBookingRequest bookingRequest)
         where T : ServiceBookingBase,new()

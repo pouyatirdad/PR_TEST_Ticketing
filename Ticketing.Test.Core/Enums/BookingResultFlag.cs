@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ticketing.Core.Enums
 {
-    public enum BookingSuccessFlag
+    public enum BookingResultFlag
     {
         Success,
         Failure

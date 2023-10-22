@@ -104,9 +104,9 @@ namespace Ticketing.Test
         }
 
         [Theory]
-        [InlineData(BookingSuccessFlag.Failure,false)]
-        [InlineData(BookingSuccessFlag.Success,true)]
-        public void Should_Return_SuccessOrFailure_Flag_In_Result(BookingSuccessFlag bookingSuccessFlag, bool IsAvailable)
+        [InlineData(BookingResultFlag.Failure,false)]
+        [InlineData(BookingResultFlag.Success,true)]
+        public void Should_Return_SuccessOrFailure_Flag_In_Result(BookingResultFlag bookingResultFlag, bool IsAvailable)
         {
             if (!IsAvailable)
             {
@@ -114,9 +114,7 @@ namespace Ticketing.Test
             }
 
             var result =_handler.BookService(_request);
-            bookingSuccessFlag.ShouldBe(result.Flag);
-
-
+            bookingResultFlag.ShouldBe(result.Flag);
         }
     }
 }
