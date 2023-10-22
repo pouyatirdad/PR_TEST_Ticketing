@@ -27,7 +27,7 @@ namespace Ticketing.Core.Handler
             {
                 var Ticket =availableTickets.First();
                 var TicketBooking = CreateTicketBookingObject<TicketBooking>(bookingRequest);
-                TicketBooking.Id = Ticket.Id;
+                TicketBooking.TicketId = Ticket.Id;
                 _ticketBookingService.Save(TicketBooking);
                 result.Flag = Enums.BookingResultFlag.Success;
             }

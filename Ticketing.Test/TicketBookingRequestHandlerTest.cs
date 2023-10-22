@@ -89,7 +89,7 @@ namespace Ticketing.Test
             savedBooking.Name.ShouldBe(_request.Name);
             savedBooking.Family.ShouldBe(_request.Family);
             savedBooking.Email.ShouldBe(_request.Email);
-            savedBooking.Id.ShouldBe(_availableticketList.First().Id);
+            savedBooking.TicketId.ShouldBe(_availableticketList.First().Id);
         }
 
         [Fact]
@@ -115,6 +115,29 @@ namespace Ticketing.Test
 
             var result =_handler.BookService(_request);
             bookingResultFlag.ShouldBe(result.Flag);
+        }
+
+        [Theory]
+        [InlineData(1,true)]
+        [InlineData(null,false)]
+        public void Should_Return_TicketBookingId_In_Result(int? ticketBooingId,bool isAvaiable)
+        {
+            if (!isAvaiable)
+            {
+                _availableticketList.Clear();
+            }
+            else
+            {
+                _ticketBookingServiceMock.Setup(x => x.Save(It.IsAny<TicketBooking>()))
+                .Callback<TicketBooking>(result =>
+                {
+                    TicketBooking.Id = ticketBooingId.Value;
+                });
+            }
+
+            var result =_handler.BookService(_request);
+
+            result.TicketBookingId.ShouldBe(ticketBooingId);
         }
     }
 }
