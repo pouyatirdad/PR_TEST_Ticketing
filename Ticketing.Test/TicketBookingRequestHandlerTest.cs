@@ -5,6 +5,7 @@ using Ticketing.Core.Handler;
 using Ticketing.Core.DataService;
 using Moq;
 using Ticketing.Core.Domain;
+using Ticketing.Core.Enums;
 
 namespace Ticketing.Test
 {
@@ -99,6 +100,22 @@ namespace Ticketing.Test
 
             //use times.Never because we dont want call method
             _ticketBookingServiceMock.Verify(x => x.Save(It.IsAny<TicketBooking>()), Times.Never);
+
+        }
+
+        [Theory]
+        [InlineData(BookingSuccessFlag.Failure,false)]
+        [InlineData(BookingSuccessFlag.Success,true)]
+        public void Should_Return_SuccessOrFailure_Flag_In_Result(BookingSuccessFlag bookingSuccessFlag, bool IsAvailable)
+        {
+            if (!IsAvailable)
+            {
+                _availableticketList.Clear();
+            }
+
+            var result =_handler.BookService(_request);
+            bookingSuccessFlag.ShouldBe(result.Flag);
+
 
         }
     }
