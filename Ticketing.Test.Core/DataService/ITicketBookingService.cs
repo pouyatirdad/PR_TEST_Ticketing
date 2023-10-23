@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Ticketing.Core.Domain;
+using Ticketing.Domain.Domain;
 
 namespace Ticketing.Core.DataService
 {

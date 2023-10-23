@@ -4,8 +4,8 @@ using Ticketing.Core.Model;
 using Ticketing.Core.Handler;
 using Ticketing.Core.DataService;
 using Moq;
-using Ticketing.Core.Domain;
 using Ticketing.Core.Enums;
+using Ticketing.Domain.Domain;
 
 namespace Ticketing.Test
 {

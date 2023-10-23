@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Ticketing.Core.Model;
+using Ticketing.Domain.Base;
 
-namespace Ticketing.Core.Domain
+namespace Ticketing.Domain.Domain
 {
     public class TicketBooking : ServiceBookingBase
     {

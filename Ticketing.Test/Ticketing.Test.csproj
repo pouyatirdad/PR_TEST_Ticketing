@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Ticketing.Domain\Ticketing.Domain.csproj" />
     <ProjectReference Include="..\Ticketing.Test.Core\Ticketing.Core.csproj" />
   </ItemGroup>
 
