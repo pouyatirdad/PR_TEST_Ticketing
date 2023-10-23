@@ -36,9 +36,16 @@ namespace Ticketing.Persistence.Test
 
             //act
 
-
+            var availableServices =ticketBookingService.GetAvailableTickets(date);
 
             //assert
+
+            Assert.NotNull(availableServices);
+            Assert.Equal(2, availableServices.Count());
+            Assert.Contains(availableServices,x=>x.Id == 2);
+            Assert.Contains(availableServices,x=>x.Id == 3);
+            Assert.DoesNotContain(availableServices,x=>x.Id == 3);
+
         }
     }
 }
