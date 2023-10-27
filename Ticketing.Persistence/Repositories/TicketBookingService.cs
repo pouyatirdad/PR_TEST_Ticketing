@@ -18,16 +18,9 @@ namespace Ticketing.Persistence.Repositories
 
         public IEnumerable<Ticket> GetAvailableTickets(DateTime date)
         {
-            var unAvaiableTickets =_context.TicketBookings
-                .Where(x=>x.Date == date)
-                .Select(x => x.TicketId)
+            return _context.Tickets
+                .Where(x => !x.TicketBookings.Any(c=>c.Date == date))
                 .ToList();
-
-            var avaiableTickets = _context.Tickets
-                .Where(x => unAvaiableTickets.Contains(x.Id) == false)
-                .ToList();
-
-            return avaiableTickets;
         }
 
         public void Save(TicketBooking ticketBooking)
