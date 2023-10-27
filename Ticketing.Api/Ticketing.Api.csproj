@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="7.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.24" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="6.0.24" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Ticketing.Domain\Ticketing.Domain.csproj" />
     <ProjectReference Include="..\Ticketing.Persistence\Ticketing.Persistence.csproj" />
   </ItemGroup>
