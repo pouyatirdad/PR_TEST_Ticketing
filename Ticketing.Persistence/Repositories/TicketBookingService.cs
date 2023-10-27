@@ -25,7 +25,8 @@ namespace Ticketing.Persistence.Repositories
 
         public void Save(TicketBooking ticketBooking)
         {
-            throw new NotImplementedException();
+            _context.Add(ticketBooking);
+            _context.SaveChanges();
         }
     }
 }
