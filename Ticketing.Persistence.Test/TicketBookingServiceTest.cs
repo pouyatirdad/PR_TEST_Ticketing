@@ -47,5 +47,35 @@ namespace Ticketing.Persistence.Test
             Assert.DoesNotContain(availableServices,x=>x.Id == 1);
 
         }
+
+        [Fact]
+        public void Should_Save_Ticket_Booking()
+        {
+            //arrange
+
+            var dbOptions = new DbContextOptionsBuilder<MyDbContext>()
+                .UseInMemoryDatabase("ShouldSaveTicketTest", x => x.EnableNullChecks(false))
+                .Options;
+
+            var ticketBooking = new TicketBooking { TicketId=1,Date=new DateTime(2022,06,01) };
+
+            //act
+
+            using var context = new MyDbContext(dbOptions);
+            var ticketBookingService =new TicketBookingService(context);
+            ticketBookingService.Save(ticketBooking);
+
+            //assert
+
+            var bookings =context.TicketBookings.ToList();
+
+            Assert.NotNull(bookings);
+
+            var booking = Assert.Single(bookings); 
+
+            Assert.Equal(ticketBooking.Date,booking.Date);
+            Assert.Equal(ticketBooking.TicketId,booking.TicketId);
+
+        }
     }
 }
