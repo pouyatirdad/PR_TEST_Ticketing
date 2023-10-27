@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ticketing.Test", "Ticketing.Test\Ticketing.Test.csproj", "{6D8BAA5C-6FEC-4A46-9D63-986CD0E90EB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ticketing.Core.Test", "Ticketing.Test\Ticketing.Core.Test.csproj", "{6D8BAA5C-6FEC-4A46-9D63-986CD0E90EB5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ticketing.Core", "Ticketing.Test.Core\Ticketing.Core.csproj", "{ED25E5E3-4AB9-4FF6-8BC9-46A5343226F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticketing.Domain", "Ticketing.Domain\Ticketing.Domain.csproj", "{12B58507-CA2A-4065-B26A-EAC4AB062A9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ticketing.Domain", "Ticketing.Domain\Ticketing.Domain.csproj", "{12B58507-CA2A-4065-B26A-EAC4AB062A9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticketing.Persistence", "Ticketing.Persistence\Ticketing.Persistence.csproj", "{AF977DC8-8EC9-4855-B716-F09CD7CC8167}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ticketing.Persistence", "Ticketing.Persistence\Ticketing.Persistence.csproj", "{AF977DC8-8EC9-4855-B716-F09CD7CC8167}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticketing.Persistence.Test", "Ticketing.Persistence.Test\Ticketing.Persistence.Test.csproj", "{983DD122-631A-4BEF-BFB0-054D93E07675}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ticketing.Persistence.Test", "Ticketing.Persistence.Test\Ticketing.Persistence.Test.csproj", "{983DD122-631A-4BEF-BFB0-054D93E07675}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticketing.Api", "Ticketing.Api\Ticketing.Api.csproj", "{414054A6-7F81-4D62-922E-0F1C821C8A62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticketing.Api.Test", "Ticketing.Api.Test\Ticketing.Api.Test.csproj", "{C85096CE-E628-4195-A746-E240B4F48218}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{983DD122-631A-4BEF-BFB0-054D93E07675}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{983DD122-631A-4BEF-BFB0-054D93E07675}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{983DD122-631A-4BEF-BFB0-054D93E07675}.Release|Any CPU.Build.0 = Release|Any CPU
+		{414054A6-7F81-4D62-922E-0F1C821C8A62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{414054A6-7F81-4D62-922E-0F1C821C8A62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{414054A6-7F81-4D62-922E-0F1C821C8A62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{414054A6-7F81-4D62-922E-0F1C821C8A62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C85096CE-E628-4195-A746-E240B4F48218}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C85096CE-E628-4195-A746-E240B4F48218}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C85096CE-E628-4195-A746-E240B4F48218}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C85096CE-E628-4195-A746-E240B4F48218}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
