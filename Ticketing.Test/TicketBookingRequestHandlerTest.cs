@@ -131,7 +131,7 @@ namespace Ticketing.Test
                 _ticketBookingServiceMock.Setup(x => x.Save(It.IsAny<TicketBooking>()))
                 .Callback<TicketBooking>(result =>
                 {
-                    TicketBooking.Id = ticketBooingId.Value;
+                    result.Id = ticketBooingId.Value;
                 });
             }
 

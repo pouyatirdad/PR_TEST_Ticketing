@@ -27,8 +27,8 @@ namespace Ticketing.Persistence.Test
             context.Add(new Ticket { Id = 2, Name="second"});
             context.Add(new Ticket { Id = 3, Name= "third" });
 
-            context.Add(new TicketBooking { TicketId = 1, Date = date });
-            context.Add(new TicketBooking { TicketId = 2, Date = date.AddDays(-1) });
+            context.Add(new TicketBooking { TicketId = 1,Name="1",Family="11",Email="111@gml.com", Date = date });
+            context.Add(new TicketBooking { TicketId = 2, Name = "2", Family = "22", Email = "222@gml.com", Date = date.AddDays(-1) });
 
             context.SaveChanges();
 
