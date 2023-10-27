@@ -19,7 +19,7 @@ namespace Ticketing.Persistence.Test
             var date = new DateTime(2023, 10, 23);
 
             var dbOptions =new DbContextOptionsBuilder<MyDbContext>()
-                .UseInMemoryDatabase("AvailableTicketTest")
+                .UseInMemoryDatabase("AvailableTicketTest",x=>x.EnableNullChecks(false))
                 .Options;
 
             using var context = new MyDbContext(dbOptions);
@@ -27,8 +27,8 @@ namespace Ticketing.Persistence.Test
             context.Add(new Ticket { Id = 2, Name="second"});
             context.Add(new Ticket { Id = 3, Name= "third" });
 
-            context.Add(new TicketBooking { TicketId = 1,Name="1",Family="11",Email="111@gml.com", Date = date });
-            context.Add(new TicketBooking { TicketId = 2, Name = "2", Family = "22", Email = "222@gml.com", Date = date.AddDays(-1) });
+            context.Add(new TicketBooking { TicketId = 1, Date = date });
+            context.Add(new TicketBooking { TicketId = 2, Date = date.AddDays(-1) });
 
             context.SaveChanges();
 
@@ -44,7 +44,7 @@ namespace Ticketing.Persistence.Test
             Assert.Equal(2, availableServices.Count());
             Assert.Contains(availableServices,x=>x.Id == 2);
             Assert.Contains(availableServices,x=>x.Id == 3);
-            Assert.DoesNotContain(availableServices,x=>x.Id == 3);
+            Assert.DoesNotContain(availableServices,x=>x.Id == 1);
 
         }
     }
