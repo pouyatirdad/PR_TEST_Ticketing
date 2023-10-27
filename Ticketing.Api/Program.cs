@@ -1,5 +1,6 @@
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using Ticketing.Core.Handler;
 using Ticketing.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,8 @@ var conn =new SqliteConnection(connString);
 conn.Open();
 
 builder.Services.AddDbContext<MyDbContext>(o=>o.UseSqlite(conn));
+
+builder.Services.AddScoped<ITicketBookingRequestHandler, TicketBookingRequestHandler>();
 
 var app = builder.Build();
 

@@ -5,7 +5,7 @@ using Ticketing.Domain.Domain;
 
 namespace Ticketing.Core.Handler
 {
-    public class TicketBookingRequestHandler
+    public class TicketBookingRequestHandler : ITicketBookingRequestHandler
     {
         private readonly ITicketBookingService _ticketBookingService;
 
@@ -26,25 +26,26 @@ namespace Ticketing.Core.Handler
 
             if (availableTickets.Any())
             {
-                var Ticket =availableTickets.First();
+                var Ticket = availableTickets.First();
                 var TicketBooking = CreateTicketBookingObject<TicketBooking>(bookingRequest);
                 TicketBooking.TicketId = Ticket.Id;
                 _ticketBookingService.Save(TicketBooking);
                 result.TicketBookingId = TicketBooking.TicketId;
                 result.Flag = Enums.BookingResultFlag.Success;
             }
-            else { 
-            result.Flag = Enums.BookingResultFlag.Failure;
+            else
+            {
+                result.Flag = Enums.BookingResultFlag.Failure;
             }
 
             return result;
         }
         public static T CreateTicketBookingObject<T>(TicketBookingRequest bookingRequest)
-        where T : ServiceBookingBase,new()
+        where T : ServiceBookingBase, new()
         {
             return new T
             {
-                Name= bookingRequest.Name,
+                Name = bookingRequest.Name,
                 Family = bookingRequest.Family,
                 Email = bookingRequest.Email,
             };
